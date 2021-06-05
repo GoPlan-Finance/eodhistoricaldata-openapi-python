@@ -1,17 +1,17 @@
-# openapi_client.ExchangesApi
+# openapi_client.AssetsApi
 
 All URIs are relative to *https://eodhistoricaldata.com/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list_exchanges**](ExchangesApi.md#list_exchanges) | **GET** /exchanges-list | Search symbols
-[**list_symbols**](ExchangesApi.md#list_symbols) | **GET** /exchange-symbol-list/{exchangeCode}?fmt&#x3D;json | Search symbols
+[**asset_fundamentals_general_section**](AssetsApi.md#asset_fundamentals_general_section) | **GET** /fundamentals/{ticker}?fmt&#x3D;json&amp;filter&#x3D;General | Get Asset fundamentals
+[**search_asset**](AssetsApi.md#search_asset) | **GET** /search/{query} | Search symbols
 
 
-# **list_exchanges**
-> [Exchange] list_exchanges()
+# **asset_fundamentals_general_section**
+> AssetFundamentalsSectionGeneral asset_fundamentals_general_section(ticker)
 
-Search symbols
+Get Asset fundamentals
 
 ### Example
 
@@ -19,8 +19,8 @@ Search symbols
 ```python
 import time
 import openapi_client
-from openapi_client.api import exchanges_api
-from openapi_client.model.exchange import Exchange
+from openapi_client.api import assets_api
+from openapi_client.model.asset_fundamentals_section_general import AssetFundamentalsSectionGeneral
 from pprint import pprint
 # Defining the host is optional and defaults to https://eodhistoricaldata.com/api
 # See configuration.py for a list of all supported configuration parameters.
@@ -42,24 +42,28 @@ configuration.api_key['api_token'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = exchanges_api.ExchangesApi(api_client)
+    api_instance = assets_api.AssetsApi(api_client)
+    ticker = "ticker_example" # str | Asset Ticker
 
-    # example, this endpoint has no required or optional parameters
+    # example passing only required values which don't have defaults set
     try:
-        # Search symbols
-        api_response = api_instance.list_exchanges()
+        # Get Asset fundamentals
+        api_response = api_instance.asset_fundamentals_general_section(ticker)
         pprint(api_response)
     except openapi_client.ApiException as e:
-        print("Exception when calling ExchangesApi->list_exchanges: %s\n" % e)
+        print("Exception when calling AssetsApi->asset_fundamentals_general_section: %s\n" % e)
 ```
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ticker** | **str**| Asset Ticker |
 
 ### Return type
 
-[**[Exchange]**](Exchange.md)
+[**AssetFundamentalsSectionGeneral**](AssetFundamentalsSectionGeneral.md)
 
 ### Authorization
 
@@ -79,8 +83,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_symbols**
-> [Symbol] list_symbols(exchange_code)
+# **search_asset**
+> [SymbolSearch] search_asset(query)
 
 Search symbols
 
@@ -90,8 +94,8 @@ Search symbols
 ```python
 import time
 import openapi_client
-from openapi_client.api import exchanges_api
-from openapi_client.model.symbol import Symbol
+from openapi_client.api import assets_api
+from openapi_client.model.symbol_search import SymbolSearch
 from pprint import pprint
 # Defining the host is optional and defaults to https://eodhistoricaldata.com/api
 # See configuration.py for a list of all supported configuration parameters.
@@ -113,16 +117,16 @@ configuration.api_key['api_token'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = exchanges_api.ExchangesApi(api_client)
-    exchange_code = "exchangeCode_example" # str | ExchangeCode
+    api_instance = assets_api.AssetsApi(api_client)
+    query = "query_example" # str | Name of ticker or search string
 
     # example passing only required values which don't have defaults set
     try:
         # Search symbols
-        api_response = api_instance.list_symbols(exchange_code)
+        api_response = api_instance.search_asset(query)
         pprint(api_response)
     except openapi_client.ApiException as e:
-        print("Exception when calling ExchangesApi->list_symbols: %s\n" % e)
+        print("Exception when calling AssetsApi->search_asset: %s\n" % e)
 ```
 
 
@@ -130,11 +134,11 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **exchange_code** | **str**| ExchangeCode |
+ **query** | **str**| Name of ticker or search string |
 
 ### Return type
 
-[**[Symbol]**](Symbol.md)
+[**[SymbolSearch]**](SymbolSearch.md)
 
 ### Authorization
 

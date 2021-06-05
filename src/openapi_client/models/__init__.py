@@ -9,6 +9,8 @@
 # import sys
 # sys.setrecursionlimit(n)
 
+from openapi_client.model.asset_fundamentals_section_general import AssetFundamentalsSectionGeneral
+from openapi_client.model.asset_fundamentals_section_general_address_data import AssetFundamentalsSectionGeneralAddressData
 from openapi_client.model.exchange import Exchange
 from openapi_client.model.symbol import Symbol
 from openapi_client.model.symbol_search import SymbolSearch

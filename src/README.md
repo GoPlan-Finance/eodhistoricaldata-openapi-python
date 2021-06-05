@@ -49,9 +49,9 @@ Please follow the [installation procedure](#installation--usage) and then run th
 import time
 import openapi_client
 from pprint import pprint
-from openapi_client.api import exchanges_api
-from openapi_client.model.exchange import Exchange
-from openapi_client.model.symbol import Symbol
+from openapi_client.api import assets_api
+from openapi_client.model.asset_fundamentals_section_general import AssetFundamentalsSectionGeneral
+from openapi_client.model.symbol_search import SymbolSearch
 # Defining the host is optional and defaults to https://eodhistoricaldata.com/api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -73,14 +73,15 @@ configuration.api_key['api_token'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = exchanges_api.ExchangesApi(api_client)
-    
+    api_instance = assets_api.AssetsApi(api_client)
+    ticker = "ticker_example" # str | Asset Ticker
+
     try:
-        # Search symbols
-        api_response = api_instance.list_echanges()
+        # Get Asset fundamentals
+        api_response = api_instance.asset_fundamentals_general_section(ticker)
         pprint(api_response)
     except openapi_client.ApiException as e:
-        print("Exception when calling ExchangesApi->list_echanges: %s\n" % e)
+        print("Exception when calling AssetsApi->asset_fundamentals_general_section: %s\n" % e)
 ```
 
 ## Documentation for API Endpoints
@@ -89,13 +90,16 @@ All URIs are relative to *https://eodhistoricaldata.com/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ExchangesApi* | [**list_echanges**](docs/ExchangesApi.md#list_echanges) | **GET** /exchanges-list | Search symbols
+*AssetsApi* | [**asset_fundamentals_general_section**](docs/AssetsApi.md#asset_fundamentals_general_section) | **GET** /fundamentals/{ticker}?fmt&#x3D;json&amp;filter&#x3D;General | Get Asset fundamentals
+*AssetsApi* | [**search_asset**](docs/AssetsApi.md#search_asset) | **GET** /search/{query} | Search symbols
+*ExchangesApi* | [**list_exchanges**](docs/ExchangesApi.md#list_exchanges) | **GET** /exchanges-list | Search symbols
 *ExchangesApi* | [**list_symbols**](docs/ExchangesApi.md#list_symbols) | **GET** /exchange-symbol-list/{exchangeCode}?fmt&#x3D;json | Search symbols
-*SearchApi* | [**search**](docs/SearchApi.md#search) | **GET** /search/{query} | Search symbols
 
 
 ## Documentation For Models
 
+ - [AssetFundamentalsSectionGeneral](docs/AssetFundamentalsSectionGeneral.md)
+ - [AssetFundamentalsSectionGeneralAddressData](docs/AssetFundamentalsSectionGeneralAddressData.md)
  - [Exchange](docs/Exchange.md)
  - [Symbol](docs/Symbol.md)
  - [SymbolSearch](docs/SymbolSearch.md)
