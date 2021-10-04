@@ -23,6 +23,7 @@ from openapi_client.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from openapi_client.model.asset_fundamentals_section_general import AssetFundamentalsSectionGeneral
+from openapi_client.model.asset_quote import AssetQuote
 from openapi_client.model.symbol_search import SymbolSearch
 
 
@@ -154,6 +155,130 @@ class AssetsApi(object):
             },
             api_client=api_client,
             callable=__asset_fundamentals_general_section
+        )
+
+        def __real_time_quote(
+            self,
+            ticker,
+            **kwargs
+        ):
+            """Get Asset fundamentals  # noqa: E501
+
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.real_time_quote(ticker, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                ticker (str): Asset Ticker
+
+            Keyword Args:
+                s (str): Extra tickers to fetch separated by a \",\" (Max recommended by EOD is 15-20 tickers). [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                [AssetQuote]
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['ticker'] = \
+                ticker
+            return self.call_with_http_info(**kwargs)
+
+        self.real_time_quote = _Endpoint(
+            settings={
+                'response_type': ([AssetQuote],),
+                'auth': [
+                    'api_token'
+                ],
+                'endpoint_path': '/real-time/{ticker}?fmt=json',
+                'operation_id': 'real_time_quote',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'ticker',
+                    's',
+                ],
+                'required': [
+                    'ticker',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'ticker':
+                        (str,),
+                    's':
+                        (str,),
+                },
+                'attribute_map': {
+                    'ticker': 'ticker',
+                    's': 's',
+                },
+                'location_map': {
+                    'ticker': 'path',
+                    's': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__real_time_quote
         )
 
         def __search_asset(

@@ -51,6 +51,7 @@ import openapi_client
 from pprint import pprint
 from openapi_client.api import assets_api
 from openapi_client.model.asset_fundamentals_section_general import AssetFundamentalsSectionGeneral
+from openapi_client.model.asset_quote import AssetQuote
 from openapi_client.model.symbol_search import SymbolSearch
 # Defining the host is optional and defaults to https://eodhistoricaldata.com/api
 # See configuration.py for a list of all supported configuration parameters.
@@ -91,6 +92,7 @@ All URIs are relative to *https://eodhistoricaldata.com/api*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AssetsApi* | [**asset_fundamentals_general_section**](docs/AssetsApi.md#asset_fundamentals_general_section) | **GET** /fundamentals/{ticker}?fmt&#x3D;json&amp;filter&#x3D;General | Get Asset fundamentals
+*AssetsApi* | [**real_time_quote**](docs/AssetsApi.md#real_time_quote) | **GET** /real-time/{ticker}?fmt&#x3D;json | Get Asset fundamentals
 *AssetsApi* | [**search_asset**](docs/AssetsApi.md#search_asset) | **GET** /search/{query} | Search symbols
 *ExchangesApi* | [**list_exchanges**](docs/ExchangesApi.md#list_exchanges) | **GET** /exchanges-list | Search symbols
 *ExchangesApi* | [**list_symbols**](docs/ExchangesApi.md#list_symbols) | **GET** /exchange-symbol-list/{exchangeCode}?fmt&#x3D;json | Search symbols
@@ -100,6 +102,7 @@ Class | Method | HTTP request | Description
 
  - [AssetFundamentalsSectionGeneral](docs/AssetFundamentalsSectionGeneral.md)
  - [AssetFundamentalsSectionGeneralAddressData](docs/AssetFundamentalsSectionGeneralAddressData.md)
+ - [AssetQuote](docs/AssetQuote.md)
  - [Exchange](docs/Exchange.md)
  - [Symbol](docs/Symbol.md)
  - [SymbolSearch](docs/SymbolSearch.md)
